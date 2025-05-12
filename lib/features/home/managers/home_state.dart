@@ -1,8 +1,10 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:sott_examen/data/model/home_model.dart';
 
 enum HomeStatus { idle, loading, success, error }
 
+@immutable
 class HomeState extends Equatable {
   final List<HomeModel> products;
   final HomeStatus status;

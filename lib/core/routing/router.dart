@@ -10,12 +10,10 @@ final router = GoRouter(
   routes: [
     GoRoute(
       path: Routes.home,
-      builder: (context, state) {
-        return BlocProvider(
+      builder: (context, state) => BlocProvider(
           create: (context) => HomeBloc(repo: context.read()),
-          child: const HomeView(),
-        );
-      }
+          child: HomeView(),
+        )
     ),
   ],
 );

@@ -17,66 +17,74 @@ class HomeView extends StatelessWidget {
       builder: (context, state) {
         if (state.status == HomeStatus.loading) {
           return const Center(child: CircularProgressIndicator());
-        }
-        if (state.status == HomeStatus.error) {
+        } else if (state.status == HomeStatus.error) {
           return const Center(child: Text("Xato!"));
         }
-        if (state.status == HomeStatus.success) {
-          return Scaffold(
-            backgroundColor: Colors.white,
-            body: CustomScrollView(
-              slivers: [
-                SliverAppBar(
-                  toolbarHeight: 129.h,
-                  actions: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: SvgPicture.asset("assets/icons/notification.svg"),
-                    ),
-                  ],
-                  flexibleSpace: Image.asset(
-                    "assets/images/background.png",
-                    fit: BoxFit.cover,
+        return Scaffold(
+          backgroundColor: Colors.white,
+          body: CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                toolbarHeight: 129.h,
+                actions: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: SvgPicture.asset("assets/icons/notification.svg"),
                   ),
-                  floating: true,
-                  snap: true,
-                  pinned: false,
-                  backgroundColor: Colors.white,
-                  title: Text(
-                    'SOTT',
-                    style: TextStyle(
-                      color: Color(0xFF1A1528),
-                      fontSize: 24.sp,
-                      fontWeight: FontWeight.w900,
-                    ),
+                ],
+                flexibleSpace: Image.asset(
+                  "assets/images/background.png",
+                  fit: BoxFit.cover,
+                ),
+                floating: true,
+                snap: true,
+                pinned: false,
+                backgroundColor: Colors.white,
+                title: Text(
+                  'SOTT',
+                  style: TextStyle(
+                    color: Color(0xFF1A1528),
+                    fontSize: 24.sp,
+                    fontWeight: FontWeight.w900,
                   ),
-                  leading: Padding(
-                    padding: EdgeInsets.only(left: 20.w),
-                    child: SvgPicture.asset("assets/icons/logo.svg"),
-                  ),
-                  bottom: PreferredSize(
-                    preferredSize: Size.fromHeight(48.h),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 24.w),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          HomeBottomItems(image: "assets/icons/key.svg", title: "Purchase"),
-                          HomeBottomItems(image: "assets/icons/defend.svg", title: "Sale"),
-                          HomeBottomItems(image: "assets/icons/clock.svg", title: "Rent"),
-                          HomeBottomItems(image: "assets/icons/building.svg", title: "Pass"),
-                        ],
-                      ),
+                ),
+                leading: Padding(
+                  padding: EdgeInsets.only(left: 20.w),
+                  child: SvgPicture.asset("assets/icons/logo.svg"),
+                ),
+                bottom: PreferredSize(
+                  preferredSize: Size.fromHeight(48.h),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 24.w),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        HomeBottomItems(
+                          image: "assets/icons/key.svg",
+                          title: "Purchase",
+                        ),
+                        HomeBottomItems(
+                          image: "assets/icons/defend.svg",
+                          title: "Sale",
+                        ),
+                        HomeBottomItems(
+                          image: "assets/icons/clock.svg",
+                          title: "Rent",
+                        ),
+                        HomeBottomItems(
+                          image: "assets/icons/building.svg",
+                          title: "Pass",
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                HomeGridView(state: state),
-              ],
-            ),
-            bottomNavigationBar: const SottBottomNavigationBar(),
-          );
-        }
-        return const Center(child: Text("False"));
+              ),
+              HomeGridView(state: state),
+            ],
+          ),
+          bottomNavigationBar: const SottBottomNavigationBar(),
+        );
       },
     );
   }
